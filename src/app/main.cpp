@@ -11,7 +11,7 @@
 #include <unistd.h>
 #include "../overlay.h"
 #include "mangoapp.h"
-#include <GL/glew.h>
+#include "glad/glad.h"
 #include <GLFW/glfw3.h>
 
 #define GLFW_EXPOSE_NATIVE_X11
@@ -247,10 +247,7 @@ int main(int, char**)
     // Create window with graphics context
     GLFWwindow* window = init(glsl_version);
     // Initialize OpenGL loader
-
-    bool err = glewInit() != GLEW_OK;
-
-    if (err)
+    if (!gladLoadGL())
     {
         fprintf(stderr, "Failed to initialize OpenGL loader!\n");
         return 1;
